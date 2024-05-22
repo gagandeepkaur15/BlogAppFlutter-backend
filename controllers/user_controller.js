@@ -1,9 +1,10 @@
-import user_model from "../models/user_model";
+import user_model from "../models/user_model.js";
 import bcryptjs from "bcryptjs";
 
 export const getAllUsers = async (req, res, next) => {
     const allUsers = await user_model.find();
-    return res.status(200).json({allUsers});
+    // return res.status(200).json({allUsers});
+    return res.status(200).json(allUsers);
 }
 
 export const getUserById = async (req, res, next) => {
@@ -14,7 +15,8 @@ export const getUserById = async (req, res, next) => {
    } catch (e) {
         return res.status(500).json({message: `${e}`});
    }
-   return res.status(200).json({user}); 
+//    return res.status(200).json({user}); 
+   return res.status(200).json(user); //Removed curly brackets so we get data simply inside { ... } rather than user: { ... } 
 }
 
 export const userSignUp = async (req, res, next) => {
@@ -38,7 +40,8 @@ export const userSignUp = async (req, res, next) => {
     } catch (e) {
         return res.status(500).json({message: `${err}`});
     }
-    return res.status(200).json({user});  
+    // return res.status(200).json({user}); 
+    return res.status(200).json(user); 
 }
 
 export const login = async (req, res, next) => {
@@ -58,7 +61,8 @@ export const login = async (req, res, next) => {
 
     const isPasswordCorrect = bcryptjs.compareSync(password,existingUser.password);
     if(isPasswordCorrect){
-        return res.status(200).json({existingUser});
+        // return res.status(200).json({existingUser});
+        return res.status(200).json(existingUser); //Removed curly brackets so we get data simply inside { ... } rather than existingUser: { ... }
     } 
     else {
         return res.status(500).json({message: "Please enter the correct password"});

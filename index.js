@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import blogRoute from "./routes/blog_route";
-import userRoute from "./routes/user_route";
+import blogRoute from "./routes/blog_route.js";
+import userRoute from "./routes/user_route.js";
 
 const app = express();
 const port = 5000 || process.env.PORT;
